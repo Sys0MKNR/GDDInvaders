@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bspeiwyf0sujo"]
+
+[node name="Background" type="CanvasLayer"]
+layer = -100
+
+[node name="Back" type="CPUParticles2D" parent="."]
+position = Vector2(597, -25)
+amount = 371
+lifetime = 30.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(1152, 5)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.0
+initial_velocity_max = 55.0
+
+[node name="Front" type="CPUParticles2D" parent="."]
+position = Vector2(597, -25)
+amount = 371
+lifetime = 30.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(1152, 5)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 85.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://game.gd" id="1_t3dho"]
+[ext_resource type="PackedScene" uid="uid://bspeiwyf0sujo" path="res://World/background.tscn" id="2_h0715"]
+[ext_resource type="PackedScene" uid="uid://do2t8nxsbx5od" path="res://UI/WinScreen.tscn" id="3_ro4w2"]
+[ext_resource type="PackedScene" uid="uid://dlgb430nhihix" path="res://UI/LoseScreen.tscn" id="4_0vypy"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_t3dho")
+
+[node name="Background" parent="." instance=ExtResource("2_h0715")]
+
+[node name="WinScreen" parent="." instance=ExtResource("3_ro4w2")]
+
+[node name="LoseScreen" parent="." instance=ExtResource("4_0vypy")]
+
+[connection signal="restart" from="WinScreen" to="." method="_on_win_screen_restart"]
+[connection signal="restart" from="LoseScreen" to="." method="_on_lose_screen_restart"]

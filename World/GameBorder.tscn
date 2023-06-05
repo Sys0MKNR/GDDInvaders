@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3f25klhbap42"]
+
+[ext_resource type="Script" path="res://World/game_border.gd" id="1_7gf5j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_quygl"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bmol5"]
+normal = Vector2(-1, 0)
+
+[node name="GameBorder" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_7gf5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_quygl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1153, -1)
+shape = SubResource("WorldBoundaryShape2D_bmol5")
+
+[node name="PlayerBump" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBump"]
+shape = SubResource("WorldBoundaryShape2D_quygl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBump"]
+position = Vector2(1153, -1)
+shape = SubResource("WorldBoundaryShape2D_bmol5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
