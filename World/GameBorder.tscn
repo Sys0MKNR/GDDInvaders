@@ -21,6 +21,8 @@ position = Vector2(1153, -1)
 shape = SubResource("WorldBoundaryShape2D_bmol5")
 
 [node name="PlayerBump" type="StaticBody2D" parent="."]
+light_mask = 0
+visibility_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBump"]

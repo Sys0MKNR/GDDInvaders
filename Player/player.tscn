@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://oj1jmsavqpfk"]
+[gd_scene load_steps=6 format=3 uid="uid://oj1jmsavqpfk"]
 
 [ext_resource type="Texture2D" uid="uid://by37p80xd2j4n" path="res://Player/player.png" id="1_stqy6"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ujcye"]
+[ext_resource type="AudioStream" uid="uid://bm6wtemsgollr" path="res://Assets/Sounds/161613__ryanconway__gun-fire-close.wav" id="3_rbcsq"]
+[ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="4_4o7hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7xqs"]
 size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D"]
+modulate = Color(0.180392, 0.996078, 0.866667, 1)
+position = Vector2(0, -16)
 collision_layer = 5
 script = ExtResource("1_ujcye")
 
@@ -22,3 +26,13 @@ one_shot = true
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(0, -16)
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_rbcsq")
+volume_db = -17.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.0
+texture = ExtResource("4_4o7hu")
+texture_scale = 0.2

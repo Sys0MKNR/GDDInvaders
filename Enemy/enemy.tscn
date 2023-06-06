@@ -1,10 +1,145 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2feajnev0ose"]
+[gd_scene load_steps=14 format=3 uid="uid://bu37bruqedalw"]
 
 [ext_resource type="Texture2D" uid="uid://douqmc6afcsam" path="res://Enemy/enemy.png" id="1_d1vn6"]
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_v5vph"]
+[ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="3_0nftp"]
+[ext_resource type="AudioStream" uid="uid://s4tk8ndbqdhi" path="res://Assets/Sounds/explosion.wav" id="4_ejtwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf6p3"]
 size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_f28yu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xu05o"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 0.25, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_570dw"]
+resource_name = "left"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f8wev"]
+resource_name = "right"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yn487"]
+_data = {
+"RESET": SubResource("Animation_f28yu"),
+"die": SubResource("Animation_xu05o"),
+"left": SubResource("Animation_570dw"),
+"right": SubResource("Animation_f8wev")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c5pdt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o0de4"]
+width = 25
+height = 25
+noise = SubResource("FastNoiseLite_c5pdt")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jujem"]
+polygon = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
@@ -12,6 +147,7 @@ collision_mask = 4
 script = ExtResource("1_v5vph")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.172549, 0.0235294, 0.639216, 1)
 texture = ExtResource("1_d1vn6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,4 +162,38 @@ texture = ExtResource("1_d1vn6")
 position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(1.6, 1.6)
 
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "right"
+libraries = {
+"": SubResource("AnimationLibrary_yn487")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 7.0
+shadow_color = Color(0.172549, 0.0235294, 0.639216, 1)
+texture = ExtResource("3_0nftp")
+texture_scale = 0.2
+
+[node name="DieParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 2.0
+one_shot = true
+preprocess = 0.5
+explosiveness = 0.4
+randomness = 0.5
+texture = SubResource("NoiseTexture2D_o0de4")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ejtwa")
+volume_db = -17.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_jujem")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

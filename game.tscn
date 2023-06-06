@@ -1,9 +1,56 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://buuhv042euuen"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_t3dho"]
 [ext_resource type="PackedScene" uid="uid://bspeiwyf0sujo" path="res://World/background.tscn" id="2_h0715"]
 [ext_resource type="PackedScene" uid="uid://do2t8nxsbx5od" path="res://UI/WinScreen.tscn" id="3_ro4w2"]
 [ext_resource type="PackedScene" uid="uid://dlgb430nhihix" path="res://UI/LoseScreen.tscn" id="4_0vypy"]
+[ext_resource type="AudioStream" uid="uid://7opbci8du7qv" path="res://Assets/Sounds/48544__flick3r__rezzo_4.wav" id="5_3xpgc"]
+[ext_resource type="Shader" path="res://game.gdshader" id="6_o0rgd"]
+[ext_resource type="Shader" path="res://game_bg.gdshader" id="7_6ukfb"]
+[ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="8_4hxox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yu1gr"]
+shader = ExtResource("6_o0rgd")
+shader_parameter/intensity = 0.0
+
+[sub_resource type="Animation" id="Animation_xrsk2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-17.0]
+}
+
+[sub_resource type="Animation" id="Animation_ppsqv"]
+resource_name = "game_animations"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 3.605),
+"update": 0,
+"values": [-17.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7j3d"]
+_data = {
+"RESET": SubResource("Animation_xrsk2"),
+"game_animations": SubResource("Animation_ppsqv")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6hbs"]
+shader = ExtResource("7_6ukfb")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_t3dho")
@@ -14,5 +61,36 @@ script = ExtResource("1_t3dho")
 
 [node name="LoseScreen" parent="." instance=ExtResource("4_0vypy")]
 
+[node name="MainMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_3xpgc")
+volume_db = -17.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_yu1gr")
+offset_left = -252.0
+offset_top = -145.0
+offset_right = 1432.0
+offset_bottom = 859.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n7j3d")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -128
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_t6hbs")
+offset_left = -106.0
+offset_top = -57.0
+offset_right = 1225.0
+offset_bottom = 700.0
+texture = ExtResource("8_4hxox")
+
 [connection signal="restart" from="WinScreen" to="." method="_on_win_screen_restart"]
 [connection signal="restart" from="LoseScreen" to="." method="_on_lose_screen_restart"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

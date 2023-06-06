@@ -9,7 +9,7 @@ signal enemy_bump
 var already_triggered = false
 
 #must be an enemy
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	if already_triggered:
 		return
 	emit_signal("enemy_bump")

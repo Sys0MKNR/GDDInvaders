@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://gkdwchowypl7"]
+[gd_scene load_steps=7 format=3 uid="uid://df06fhqft3oyn"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_snklm"]
 [ext_resource type="PackedScene" uid="uid://oj1jmsavqpfk" path="res://Player/player.tscn" id="2_7d7hm"]
-[ext_resource type="PackedScene" uid="uid://d1o65jo2lhlpk" path="res://World/GameBorder.tscn" id="3_hij42"]
+[ext_resource type="PackedScene" uid="uid://c3f25klhbap42" path="res://World/GameBorder.tscn" id="3_hij42"]
+[ext_resource type="Script" path="res://World/Camera.gd" id="4_2w677"]
+[ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="5_uwnjq"]
+
+[sub_resource type="Environment" id="Environment_3p3wa"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+glow_intensity = 5.0
+glow_strength = 1.25
+glow_bloom = 0.5
+glow_blend_mode = 0
+fog_light_energy = 8.89
+fog_sun_scatter = 0.57
+fog_density = 0.7917
+fog_height = 0.28
+fog_height_density = 0.0058
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -15,5 +30,17 @@ position = Vector2(581, 603)
 position = Vector2(110, 55)
 
 [node name="GameBorder" parent="." instance=ExtResource("3_hij42")]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("4_2w677")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3p3wa")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(573, 324)
+scale = Vector2(2.24219, 1.26562)
+texture = ExtResource("5_uwnjq")
 
 [connection signal="enemy_bump" from="GameBorder" to="." method="_on_game_border_enemy_bump"]

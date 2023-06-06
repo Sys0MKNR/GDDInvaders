@@ -6,6 +6,13 @@ const SPEED = 300.0
 const ACCEL = 1000#270
 const FRICTION = 2900#2300.0
 
+
+@onready var shot_sound = %ShotSound
+
+
+var in_shoot = false
+
+
 func _physics_process(delta):
 	#input by arrow keys
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -22,5 +29,19 @@ func _physics_process(delta):
 
 func shoot(): 
 	var b = preload("res://Player/bullet.tscn").instantiate()
+		
+	if not in_shoot:
+		in_shoot = true
+		var tween = create_tween()
+
+		tween.tween_property(self, "position:y", 16, 0.15).as_relative().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self, "position:y", -16, 0.10).as_relative()
+		tween.tween_callback(on_shot_finished)
+	
+	shot_sound.play()
 	b.global_position = $Muzzle.global_position
 	get_tree().current_scene.add_child(b)
+
+func on_shot_finished():
+	in_shoot = false
+	
