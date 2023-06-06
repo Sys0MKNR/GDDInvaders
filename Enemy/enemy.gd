@@ -30,9 +30,7 @@ func die():
 	emit_signal("died",self)
 	animation.play("die")	
 	$DieParticle.restart()
-	$AudioStreamPlayer.play()
 
-	
 	
 
 func turn_around(): 

@@ -4,6 +4,8 @@ signal won
 
 @onready var player = $Player
 @onready var camera = $Camera
+@onready var explosion_sound = $ExplosionPlayer
+
 
 var finished = false
 
@@ -46,11 +48,13 @@ func plr_hit(_enemy):
 func enemy_died(_enemy):
 	if finished == true:
 		return
-		
+	
+	explosion_sound.play()
 	camera.shake()
 	Hud.score += 1
 	if $Enemies.get_children().size() == 1:
 		emit_signal("won")
+		
 		finished = true
 
 

@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bu37bruqedalw"]
+[gd_scene load_steps=12 format=3 uid="uid://bu37bruqedalw"]
 
 [ext_resource type="Texture2D" uid="uid://douqmc6afcsam" path="res://Enemy/enemy.png" id="1_d1vn6"]
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_v5vph"]
 [ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="3_0nftp"]
-[ext_resource type="AudioStream" uid="uid://s4tk8ndbqdhi" path="res://Assets/Sounds/explosion.wav" id="4_ejtwa"]
+[ext_resource type="AudioStream" uid="uid://dyavbufhw6id0" path="res://Assets/Sounds/explosion2.ogg" id="4_yvbai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf6p3"]
 size = Vector2(32, 32)
@@ -131,13 +131,6 @@ _data = {
 "right": SubResource("Animation_f8wev")
 }
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_c5pdt"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o0de4"]
-width = 25
-height = 25
-noise = SubResource("FastNoiseLite_c5pdt")
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jujem"]
 polygon = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
 
@@ -152,11 +145,6 @@ texture = ExtResource("1_d1vn6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wf6p3")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-0.5, -0.5)
-scale = Vector2(0.09375, 0.09375)
-texture = ExtResource("1_d1vn6")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2.38419e-07, -2.38419e-07)
@@ -175,21 +163,23 @@ texture = ExtResource("3_0nftp")
 texture_scale = 0.2
 
 [node name="DieParticle" type="CPUParticles2D" parent="."]
+modulate = Color(0.666667, 0.168627, 0.992157, 1)
 emitting = false
-amount = 10
+amount = 4
 lifetime = 2.0
 one_shot = true
-preprocess = 0.5
 explosiveness = 0.4
 randomness = 0.5
-texture = SubResource("NoiseTexture2D_o0de4")
+texture = ExtResource("3_0nftp")
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 100.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_ejtwa")
+stream = ExtResource("4_yvbai")
 volume_db = -17.0
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

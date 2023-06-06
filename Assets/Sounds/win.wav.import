@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bfrtc25x67e4k"
-path="res://.godot/imported/explosion.wav-bc16692f24ce8829345116ef70c39dbd.sample"
+uid="uid://dgywy45oastn6"
+path="res://.godot/imported/win.wav-e4759fd253ee5b981a24521038825890.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/explosion.wav"
-dest_files=["res://.godot/imported/explosion.wav-bc16692f24ce8829345116ef70c39dbd.sample"]
+source_file="res://Assets/Sounds/win.wav"
+dest_files=["res://.godot/imported/win.wav-e4759fd253ee5b981a24521038825890.sample"]
 
 [params]
 

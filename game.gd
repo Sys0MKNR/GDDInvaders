@@ -4,6 +4,7 @@ var World = preload("res://World/world.tscn")
 var world = null
 
 @onready var main_music = %MainMusic
+@onready var win_sound = $WinSoundPlayer
 
 func _ready():
 	reset()
@@ -31,6 +32,7 @@ func _on_lose_screen_restart():
 
 func on_win():
 	$WinScreen.visible = true
+	win_sound.play()
 	round_end()
 	
 func on_lose(): 

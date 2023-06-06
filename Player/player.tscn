@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://by37p80xd2j4n" path="res://Player/player.png" id="1_stqy6"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ujcye"]
-[ext_resource type="AudioStream" uid="uid://bm6wtemsgollr" path="res://Assets/Sounds/161613__ryanconway__gun-fire-close.wav" id="3_rbcsq"]
+[ext_resource type="AudioStream" uid="uid://1aub3b45cims" path="res://Assets/Sounds/gunshot.wav" id="3_6qpun"]
 [ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="4_4o7hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7xqs"]
@@ -29,7 +29,7 @@ position = Vector2(0, -16)
 
 [node name="ShotSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("3_rbcsq")
+stream = ExtResource("3_6qpun")
 volume_db = -17.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
