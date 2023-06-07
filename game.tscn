@@ -12,7 +12,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yu1gr"]
 shader = ExtResource("6_o0rgd")
-shader_parameter/intensity = 0.0
 
 [sub_resource type="Animation" id="Animation_xrsk2"]
 length = 0.001

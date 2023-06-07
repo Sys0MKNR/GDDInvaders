@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://3tmld7byxg1o"]
+[gd_scene load_steps=6 format=3 uid="uid://3tmld7byxg1o"]
 
 [ext_resource type="Texture2D" uid="uid://2vbepxbpfuo3" path="res://Player/bullet.png" id="1_p721p"]
 [ext_resource type="Script" path="res://Player/bullet.gd" id="1_yy8eg"]
@@ -6,8 +6,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51kel"]
 size = Vector2(6, 14)
 
+[sub_resource type="Gradient" id="Gradient_8golw"]
+offsets = PackedFloat32Array(0.00420168)
+colors = PackedColorArray(0.941176, 0.964706, 0.941176, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fbk8l"]
+gradient = SubResource("Gradient_8golw")
+width = 4
+height = 4
+
 [node name="Bullet" type="Area2D"]
-modulate = Color(0.180392, 0.996078, 0.866667, 1)
+modulate = Color(0.239216, 1, 0.596078, 1)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_yy8eg")
@@ -21,6 +30,14 @@ scale = Vector2(0.1875, 0.4375)
 texture = ExtResource("1_p721p")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Trail" type="CPUParticles2D" parent="."]
+z_index = -10
+amount = 5
+lifetime = 0.7
+speed_scale = 4.0
+explosiveness = 0.5
+texture = SubResource("GradientTexture2D_fbk8l")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

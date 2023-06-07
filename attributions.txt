@@ -3,3 +3,5 @@ gun sound https://freesound.org/people/ryanconway/sounds/161613/
 game music https://freesound.org/people/Flick3r/sounds/48544/
 pause music 
 explosion sound 2 https://freesound.org/people/derplayer/sounds/587174/
+
+crt shader https://godotshaders.com/shader/crt-shader-2/
