@@ -1,17 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dq0umlm7qer2a"]
+[gd_scene load_steps=13 format=3 uid="uid://dq0umlm7qer2a"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_t3dho"]
 [ext_resource type="PackedScene" uid="uid://bspeiwyf0sujo" path="res://World/background.tscn" id="2_h0715"]
 [ext_resource type="PackedScene" uid="uid://do2t8nxsbx5od" path="res://UI/WinScreen.tscn" id="3_ro4w2"]
 [ext_resource type="PackedScene" uid="uid://dlgb430nhihix" path="res://UI/LoseScreen.tscn" id="4_0vypy"]
 [ext_resource type="AudioStream" uid="uid://cig28qs5yjl0v" path="res://Assets/Sounds/main_music.wav" id="5_ooo2p"]
-[ext_resource type="Shader" path="res://game.gdshader" id="6_o0rgd"]
 [ext_resource type="Shader" path="res://game_bg.gdshader" id="7_6ukfb"]
 [ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="8_4hxox"]
 [ext_resource type="AudioStream" uid="uid://dgywy45oastn6" path="res://Assets/Sounds/win.wav" id="9_yl8rh"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yu1gr"]
-shader = ExtResource("6_o0rgd")
 
 [sub_resource type="Animation" id="Animation_xrsk2"]
 length = 0.001
@@ -65,15 +61,6 @@ script = ExtResource("1_t3dho")
 unique_name_in_owner = true
 stream = ExtResource("5_ooo2p")
 volume_db = -17.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_yu1gr")
-offset_left = -252.0
-offset_top = -145.0
-offset_right = 1432.0
-offset_bottom = 859.0
-mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
