@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var direction = Vector2.RIGHT
 @onready var score_label = %Score
 
+@onready var loader = %Loader
+
 
 func set_score(new):
 	score = new
@@ -12,3 +14,5 @@ func set_score(new):
 
 func reset(): 
 	self.score = 0
+
+

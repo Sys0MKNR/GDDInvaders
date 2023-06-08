@@ -9,6 +9,7 @@ var world = null
 var first_world_load = true
 
 func _ready():
+#	main_music.play()
 	reset()
 
 func reset():

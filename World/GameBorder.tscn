@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3f25klhbap42"]
+[gd_scene load_steps=6 format=3 uid="uid://c3f25klhbap42"]
 
 [ext_resource type="Script" path="res://World/game_border.gd" id="1_7gf5j"]
+[ext_resource type="Shader" path="res://World/GameBorder.gdshader" id="2_fyr18"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_quygl"]
 normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bmol5"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1mg4t"]
+shader = ExtResource("2_fyr18")
+shader_parameter/color = Color(1, 0.294118, 1, 1)
+shader_parameter/width = 0.001
 
 [node name="GameBorder" type="Area2D"]
 collision_layer = 0
@@ -31,5 +37,11 @@ shape = SubResource("WorldBoundaryShape2D_quygl")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBump"]
 position = Vector2(1153, -1)
 shape = SubResource("WorldBoundaryShape2D_bmol5")
+
+[node name="Border" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1mg4t")
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 1, 1, 0)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

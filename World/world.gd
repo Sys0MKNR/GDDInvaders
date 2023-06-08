@@ -35,6 +35,7 @@ func init(first_val):
 
 func _ready():
 	if first: 
+		Hud.loader.start()
 		modulate = Color(.0,.0,.0,.0)
 		mega_explosion.restart()
 		mega_explosion.connect('draw', on_draw)
@@ -55,6 +56,7 @@ func on_draw():
 
 func on_loaded():
 	modulate = Color(1.0,1.0,1.0,1.0)
+	Hud.loader.stop()
 	start_round()
 
 	
@@ -96,11 +98,11 @@ func enemy_died(_enemy):
 	Hud.score += 1
 	if $Enemies.get_children().size() == 1:
 		emit_signal("won")
-		
 		finished = true
 
 
 func _on_game_border_enemy_bump():	
+	camera.shake()
 	Hud.direction *= -1
 	for e in $Enemies.get_children():
 		e.turn_around()

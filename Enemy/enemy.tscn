@@ -151,7 +151,7 @@ position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(1.6, 1.6)
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-autoplay = "right"
+autoplay = "left"
 libraries = {
 "": SubResource("AnimationLibrary_yn487")
 }
