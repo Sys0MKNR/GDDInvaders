@@ -6,6 +6,8 @@ var world = null
 @onready var main_music = %MainMusic
 @onready var win_sound = $WinSoundPlayer
 
+var first_world_load = true
+
 func _ready():
 	reset()
 
@@ -15,6 +17,11 @@ func reset():
 		world.queue_free()
 		
 	world = World.instantiate()
+	world.init(first_world_load)
+
+	
+	if first_world_load:
+		first_world_load = false	
 
 	main_music.play()
 	world.connect("won", on_win)

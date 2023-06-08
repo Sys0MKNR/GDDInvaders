@@ -67,6 +67,7 @@ stream = ExtResource("5_ooo2p")
 volume_db = -17.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_yu1gr")
 offset_left = -252.0
 offset_top = -145.0

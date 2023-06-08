@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://df06fhqft3oyn"]
+[gd_scene load_steps=11 format=3 uid="uid://df06fhqft3oyn"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_snklm"]
 [ext_resource type="PackedScene" uid="uid://oj1jmsavqpfk" path="res://Player/player.tscn" id="2_7d7hm"]
 [ext_resource type="PackedScene" uid="uid://c3f25klhbap42" path="res://World/GameBorder.tscn" id="3_hij42"]
 [ext_resource type="Script" path="res://World/Camera.gd" id="4_2w677"]
 [ext_resource type="Texture2D" uid="uid://df7wm1swd478b" path="res://Assets/Texture/circle_001.png" id="5_uwnjq"]
+[ext_resource type="AudioStream" uid="uid://bfrtc25x67e4k" path="res://Assets/Sounds/explosion.wav" id="6_64kc8"]
 [ext_resource type="AudioStream" uid="uid://dyavbufhw6id0" path="res://Assets/Sounds/explosion2.ogg" id="6_xaqk1"]
+[ext_resource type="Texture2D" uid="uid://dn8ricobflspd" path="res://Assets/Texture/exp2_0.png" id="7_dafn3"]
 
 [sub_resource type="Environment" id="Environment_3p3wa"]
 background_mode = 3
@@ -23,6 +25,12 @@ fog_sun_scatter = 0.57
 fog_density = 0.7917
 fog_height = 0.28
 fog_height_density = 0.0058
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6o1af"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -49,7 +57,32 @@ scale = Vector2(2.24219, 1.26562)
 texture = ExtResource("5_uwnjq")
 
 [node name="ExplosionPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_64kc8")
+volume_db = -17.0
+
+[node name="ExplosionEnemy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_xaqk1")
 volume_db = -17.0
+
+[node name="MegaExplosion" type="CPUParticles2D" parent="."]
+modulate = Color(0.239216, 1, 0.596078, 1)
+material = SubResource("CanvasItemMaterial_6o1af")
+position = Vector2(581, 600)
+emitting = false
+amount = 5
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.5
+lifetime_randomness = 0.5
+texture = ExtResource("7_dafn3")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+anim_speed_min = 4.0
+anim_speed_max = 4.0
 
 [connection signal="enemy_bump" from="GameBorder" to="." method="_on_game_border_enemy_bump"]
