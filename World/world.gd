@@ -38,7 +38,6 @@ func _ready():
 		Hud.loader.start()
 		modulate = Color(.0,.0,.0,.0)
 		mega_explosion.restart()
-		mega_explosion.connect('draw', on_draw)
 		timer.one_shot = true
 		timer.wait_time = 2
 		timer.autostart = true
@@ -50,9 +49,6 @@ func _ready():
 	
 
 	
-func on_draw():
-	draw_count += 1
-	print(draw_count)
 
 func on_loaded():
 	modulate = Color(1.0,1.0,1.0,1.0)
@@ -63,8 +59,10 @@ func on_loaded():
 
 func start_round():
 	Hud.direction = Vector2.RIGHT
+	player.set_physics_process(true)
 	spawn_enemies()
 	connect_enemies()
+	
 
 
 func connect_enemies():

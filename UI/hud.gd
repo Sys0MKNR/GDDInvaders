@@ -11,6 +11,10 @@ extends CanvasLayer
 func set_score(new):
 	score = new
 	score_label.text = str(score)
+	var tween = create_tween()
+	tween.tween_property(score_label, "scale", Vector2(1.5, 1.5), 0.2)
+	tween.tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.4)
+	
 
 func reset(): 
 	self.score = 0

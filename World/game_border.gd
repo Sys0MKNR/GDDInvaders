@@ -19,8 +19,7 @@ func _on_area_entered(_area):
 	
 	
 	border.material.set_shader_parameter('width', 0.01)
-	tween.tween_interval(0.2).finished
-	tween.tween_callback(border.material.set_shader_parameter.bind('width', 0.005))
+	tween.tween_interval(0.2).finished.connect(border.material.set_shader_parameter.bind('width', 0.005))
 	
 
 	
@@ -28,9 +27,3 @@ func _on_area_entered(_area):
 	already_triggered = true
 	set_deferred("already_triggered",false)
 
-
-#func set_border_width(value: float):
-#
-#	print(value)
-#	border.material.set_shader_parameter.bind('width', value)
-#

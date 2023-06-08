@@ -12,6 +12,8 @@ const FRICTION = 2900#2300.0
 
 var in_shoot = false
 
+func _ready():
+	set_physics_process(false)
 
 func _physics_process(delta):
 	#input by arrow keys
